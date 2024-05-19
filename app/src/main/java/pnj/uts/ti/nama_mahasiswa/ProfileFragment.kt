@@ -21,10 +21,8 @@ class ProfileFragment : Fragment() {
         val namaTextView = view.findViewById<TextView>(R.id.namaTextView)
         val kelasTextView = view.findViewById<TextView>(R.id.kelasTextView)
 
-        // Ambil kredensial pengguna yang digunakan untuk login
         val email = arguments?.getString("email")
 
-        // Sesuaikan tampilan profil berdasarkan kredensial
         when (email) {
             "a" -> {
                 emailTextView.text = "Email: a"
