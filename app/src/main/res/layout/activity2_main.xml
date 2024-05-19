@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -22,15 +23,37 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
-            android:orientation="horizontal"
-            android:padding="8dp"></LinearLayout>
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/dropdownSpinner"
+                    android:layout_width="195dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/profil" />
+            </LinearLayout>
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:layout_weight="15" />
 
         <LinearLayout
             android:id="@+id/navigationLayout"
@@ -67,7 +90,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
-            <!-- TextView untuk menu Profile -->
             <TextView
                 android:id="@+id/profileTextView"
                 android:layout_width="0dp"

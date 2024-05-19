@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Pendataan Alumni</string>
+    <string-array name="dropdown_items">
+        <item>More</item>
+        <item>Tambah Data</item>
+        <item>Data Alumni</item>
+        <item>Logout</item>
+    </string-array>
 </resources>

@@ -1,9 +1,11 @@
-// MainActivity2.kt
 package pnj.uts.ti.nama_mahasiswa
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -43,10 +45,56 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener {
         beritaTextView.setOnClickListener(this)
         profileTextView.setOnClickListener(this)
 
+        // Setup spinner
+        setupSpinner()
+
         // Tampilkan fragment Home saat MainActivity2 dibuka
         displayFragment(HomeFragment())
         // Simpan fragment saat ini sebagai currentFragment
         currentFragment = HomeFragment()
+    }
+
+    private fun setupSpinner() {
+        val spinner: Spinner = findViewById(R.id.dropdownSpinner)
+        val dropdownItems = resources.getStringArray(R.array.dropdown_items).toMutableList()
+
+        // Removing "More" from dropdown items list
+
+        ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            dropdownItems
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                when (selectedItem) {
+                    "More" -> {
+                        displayFragment(HomeFragment())
+                    }
+                    "Tambah Data" -> {
+                        displayFragment(TambahDataFragment())
+                    }
+                    "Data Alumni" -> {
+                        displayFragment(DataAlumniFragment())
+                    }
+                    "Logout" -> {
+                        val intent = Intent(this@MainActivity2, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing
+            }
+        }
     }
 
     override fun onClick(v: View) {
