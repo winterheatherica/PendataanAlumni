@@ -1,4 +1,4 @@
-// File: ProfileFragment.kt
+// ProfileFragment.kt
 package pnj.uts.ti.nama_mahasiswa
 
 import android.os.Bundle
@@ -16,36 +16,20 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        // Mendapatkan data login dari argument
+        val loggedInUser = arguments?.getParcelable<User>("loggedInUser")
+
+        // Menampilkan data login
         val emailTextView = view.findViewById<TextView>(R.id.emailTextView)
         val nimTextView = view.findViewById<TextView>(R.id.nimTextView)
         val namaTextView = view.findViewById<TextView>(R.id.namaTextView)
         val kelasTextView = view.findViewById<TextView>(R.id.kelasTextView)
 
-        val email = arguments?.getString("email")
-
-        when (email) {
-            "a" -> {
-                emailTextView.text = "Email: a"
-                nimTextView.text = "NIM: 2207411058"
-                namaTextView.text = "Nama: Rafii Anindito"
-                kelasTextView.text = "Kelas: TI-4B"
-            }
-            "erika" -> {
-                emailTextView.text = "Email: erika"
-                nimTextView.text = "NIM: 12207411058"
-                namaTextView.text = "Nama: Erika Kathrina"
-                kelasTextView.text = "Kelas: TI-4B"
-            }
-            else -> {
-                // Kondisi default jika kredensial tidak dikenali
-                emailTextView.text = "Email: $email"
-                nimTextView.text = "NIM: -"
-                namaTextView.text = "Nama: -"
-                kelasTextView.text = "Kelas: -"
-            }
-        }
+        emailTextView.text = "Email: ${loggedInUser?.email}"
+        nimTextView.text = "NIM: ${loggedInUser?.nim}"
+        namaTextView.text = "Nama: ${loggedInUser?.nama}"
+        kelasTextView.text = "Kelas: ${loggedInUser?.kelas}"
 
         return view
     }
 }
-
